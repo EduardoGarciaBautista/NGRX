@@ -1,4 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {IAppState} from '../../app.reducers';
+import {reset} from '../counter.actions';
 
 @Component({
   selector: 'app-grandchild',
@@ -7,17 +10,18 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class GrandchildComponent implements OnInit {
 
-  @Input() counter: number;
+  counter: number;
 
-  @Output() resetChange: EventEmitter<number> = new EventEmitter<number>();
-  constructor() {
+  constructor(private store: Store<IAppState>) {
+    store.select('counter').subscribe((counter) => {
+      this.counter = counter;
+    });
   }
 
   ngOnInit(): void {
   }
 
   reset(): void {
-    this.counter = 0;
-    this.resetChange.emit(0);
+    this.store.dispatch(reset());
   }
 }

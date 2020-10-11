@@ -1,10 +1,7 @@
 import {Component} from '@angular/core';
 import {Store} from '@ngrx/store';
 import * as actions from './counter/counter.actions';
-
-interface IAppState {
-  counter: number;
-}
+import {IAppState} from './app.reducers';
 
 @Component({
   selector: 'app-root',
@@ -16,11 +13,8 @@ export class AppComponent {
   counter: number;
 
   constructor(private store: Store<IAppState>) {
-    store.subscribe(state => {
-      console.log(state);
-      const {counter} = state;
-      this.counter = counter;
-    });
+    store.select('counter')
+      .subscribe(counter => this.counter = counter);
   }
 
   increment(): void {
