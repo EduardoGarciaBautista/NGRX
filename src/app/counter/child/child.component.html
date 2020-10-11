@@ -1,0 +1,18 @@
+<h3>Counter</h3>
+<h4>{{counter}}</h4>
+
+
+<div class="row">
+  <div class="col text-center">
+    <button (click)="multiply()" class="btn btn-primary">Multiply</button>
+    <button (click)="divide()" class="btn btn-info">divide</button>
+  </div>
+</div>
+
+<hr>
+<div class="row">
+  <div class="col text-center">
+    <app-grandchild [counter]="counter" (resetChange)="reset($event)">
+    </app-grandchild>
+  </div>
+</div>

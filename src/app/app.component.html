@@ -1,0 +1,26 @@
+<div class="row text-center">
+  <div class="col">
+    <h1>Counter</h1>
+    <h2>{{counter}}</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col text-center">
+    <button class="btn btn-primary mr-4" (click)="increment()">
+      Increment
+    </button>
+    <button class="btn btn-info text-center" (click)="decrement()">
+      Decrement
+    </button>
+
+  </div>
+</div>
+<hr>
+
+<div class="row">
+  <div class="col text-center">
+    <app-child [counter]="counter" (changeCounter)="onCounterChange($event)">
+    </app-child>
+  </div>
+</div>
